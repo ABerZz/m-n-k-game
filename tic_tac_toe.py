@@ -4,25 +4,17 @@ def display_board(board):
     # The function accepts one parameter containing the board's current status
     # and prints it out to the console.
     row_separator = ('+' + '-' * 7) * 3 + '+'
+    row_spaces = ('|' + ' ' * 7) * 3 + '|'
     
     print(row_separator)
     
     for i in range(3):
         
-        print(('|' + ' ' * 7) * 3 + '|')
-        
+        print(row_spaces)
         for j in range(3):
-            cell = i * 3 + j
-            if cell < 9:
-                front_spaces = 3
-            elif cell < 99:
-                front_spaces = 2
-            else:
-                front_spaces = 1
-            print('|' + ' ' * front_spaces + board[i][j] + ' ' * 3, end='')
+            print('|' + ' ' * 3 + board[i][j] + ' ' * 3, end='')
         print('|')
-        
-        print(('|' + ' ' * 7) * 3 + '|')
+        print(row_spaces)
         
         print(row_separator)
 
@@ -40,8 +32,8 @@ def enter_move(board):
             col = o % 3
             list_of_free_fields = make_list_of_free_fields(board)
             
-            for i in range(len(list_of_free_fields)):
-                if (row, col) == list_of_free_fields[i]:
+            for field in list_of_free_fields:
+                if (row, col) == field:
                     board[row][col] = 'O'
                     move_completed = True
                     break
